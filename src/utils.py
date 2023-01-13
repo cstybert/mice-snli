@@ -71,8 +71,8 @@ def get_stage_one_parsers():
 
     train_parser = argparse.ArgumentParser()
     train_parser.add_argument("-train_batch_size", default=4, type=int)
-    train_parser.add_argument("-val_batch_size", default=1, type=int)
-    train_parser.add_argument("-num_epochs", default=10, type=int)
+    train_parser.add_argument("-val_batch_size", default=4, type=int)
+    train_parser.add_argument("-num_epochs", default=3, type=int)
     train_parser.add_argument("-lr", default=5e-5, type=float)
     train_parser.add_argument("-seed", default=42, type=int)
     train_parser.add_argument("-data_split_ratio", default=0.75, type=float)
@@ -238,7 +238,6 @@ def load_base_t5(max_length=700):
     return tokenizer, model
 
 def get_device():
-    print("LOLOLOLOL")
     return 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def get_prob_pred(pred, label_idx):
