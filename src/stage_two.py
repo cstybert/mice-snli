@@ -151,7 +151,8 @@ def run_edit_test(args):
             beam_width=args.search.beam_width, 
             max_mask_frac=args.search.max_mask_frac,
             search_method=args.search.search_method,
-            max_search_levels=args.search.max_search_levels)
+            max_search_levels=args.search.max_search_levels,
+            verbose=False)
 
     # Get inputs
     inputs = dr.get_inputs('test')
