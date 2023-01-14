@@ -26,7 +26,7 @@ FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"), format=FORMAT)
 logger.setLevel(logging.INFO)
 
-@DatasetReader.register("rawsnli")
+@DatasetReader.register("micesnli")
 class SnliDatasetReader(DatasetReader):
 
     def __init__(

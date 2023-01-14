@@ -3,7 +3,7 @@
     "test_data_path": "test",
     "evaluate_on_test": true,
     "dataset_reader":{
-        "type": "snli",
+        "type": "micesnli",
         "tokenizer": {
             "type": "pretrained_transformer",
             "model_name": "roberta-large",
@@ -20,7 +20,7 @@
     "data_loader": {
         "batch_sampler": {
             "type": "bucket",
-            "batch_size" : 8
+            "batch_size" : 32
         }
     },
     "model": {
@@ -44,7 +44,6 @@
     "trainer": {
         "num_epochs": 3,
         "validation_metric": "+accuracy",
-        "num_gradient_accumulation_steps": 16,
         "learning_rate_scheduler": {
             "type": "slanted_triangular",
             "cut_frac": 0.06
