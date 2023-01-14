@@ -35,8 +35,8 @@
     "train_data_path": "train",
     "test_data_path": "test",
     "trainer": {
-        "num_epochs": 1,
-        "num_gradient_accumulation_steps": 64,
+        "num_epochs": 3,
+        "num_gradient_accumulation_steps": 16,
          "learning_rate_scheduler": {
             "type": "slanted_triangular",
             "cut_frac": 0.06
