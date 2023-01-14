@@ -43,6 +43,7 @@
     },
     "trainer": {
         "num_epochs": 3,
+        "num_gradient_accumulation_steps": 16,
         "validation_metric": "+accuracy",
         "learning_rate_scheduler": {
             "type": "slanted_triangular",
