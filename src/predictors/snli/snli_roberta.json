@@ -1,17 +1,26 @@
 {
-    "dataset_reader": {
-        "type": "rawsnli",
+    "train_data_path": "train",
+    "test_data_path": "test",
+    "evaluate_on_test": true,
+    "dataset_reader":{
+        "type": "snli",
+        "tokenizer": {
+            "type": "pretrained_transformer",
+            "model_name": "roberta-large",
+            "max_length": 512
+        },
         "token_indexers": {
             "tokens": {
                 "type": "pretrained_transformer",
-                "max_length": 512,
-                "model_name": "roberta-large"
+                "model_name": "roberta-large",
+                "max_length": 512
             }
-        },
-        "tokenizer": {
-            "type": "pretrained_transformer",
-            "max_length": 512,
-            "model_name": "roberta-large"
+        }
+    },
+    "data_loader": {
+        "batch_sampler": {
+            "type": "bucket",
+            "batch_size" : 8
         }
     },
     "model": {
@@ -26,35 +35,24 @@
             "token_embedders": {
                 "tokens": {
                     "type": "pretrained_transformer",
-                    "max_length": 512,
-                    "model_name": "roberta-large"
+                    "model_name": "roberta-large",
+                    "max_length": 512
                 }
             }
         }
     },
-    "train_data_path": "train",
-    "test_data_path": "test",
     "trainer": {
         "num_epochs": 3,
+        "validation_metric": "+accuracy",
         "num_gradient_accumulation_steps": 16,
-         "learning_rate_scheduler": {
+        "learning_rate_scheduler": {
             "type": "slanted_triangular",
             "cut_frac": 0.06
         },
         "optimizer": {
             "type": "huggingface_adamw",
-            "lr": 2e-05,
+            "lr": 2e-5,
             "weight_decay": 0.1
-        }
-    },
-    "evaluate_on_test": true,
-    "data_loader": {
-        "batch_sampler": {
-            "type": "bucket",
-            "batch_size": 8,
-            "sorting_keys": [
-                "tokens"
-            ]
         }
     }
 }

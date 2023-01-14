@@ -1,3 +1,3 @@
-set CUDA_VISIBLE_DEVICES=0 & allennlp train src/predictors/imdb/imdb_roberta.json --include-package src.predictors.imdb.imdb_dataset_reader -s trained_predictors/models/imdb/ -f
-set CUDA_VISIBLE_DEVICES=0 & allennlp train src/predictors/race/race_roberta.json --include-package src.predictors.race.race_dataset_reader -s trained_predictors/models/race/ -f
-set CUDA_VISIBLE_DEVICES=0 & allennlp train src/predictors/snli/snli_roberta.json --include-package src.predictors.snli.snli_dataset_reader -s trained_predictors/models/snli/ -f
+mkdir -p trained_predictors/snli/model
+mkdir -p results/snli/editors/mice/
+wget https://storage.googleapis.com/allennlp-public-models/snli-roberta.2021-03-11.tar.gz -O trained_predictors/snli/model/model.tar.gz

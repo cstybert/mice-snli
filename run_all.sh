@@ -12,9 +12,7 @@ allennlp train src/predictors/race/race_roberta.json --include-package src.predi
 allennlp train src/predictors/imdb/imdb_roberta.json --include-package src.predictors.imdb.imdb_dataset_reader -s trained_predictors/models/imdb/ 
 
 # Train Newsgroups Predictor
-allennlp train src/predictors/newsgroups/newsgroups_roberta.json \
-	--include-package src.predictors.newsgroups.newsgroups_dataset_reader \
-	-s trained_predictors/models/newsgroups/
+allennlp train src/predictors/newsgroups/newsgroups_roberta.json --include-package src.predictors.newsgroups.newsgroups_dataset_reader -s trained_predictors/models/newsgroups/
 
 ################################################################
 ########################## STAGE ONE ###########################
@@ -25,6 +23,7 @@ STAGE1EXP=mice_gold
 python run_stage_one.py -task imdb -stage1_exp ${STAGE1EXP} 
 python run_stage_one.py -task newsgroups -stage1_exp ${STAGE1EXP} 
 python run_stage_one.py -task race -stage1_exp ${STAGE1EXP} 
+python run_stage_one.py -task snli -stage1_exp ${STAGE1EXP} 
 
 ################################################################
 ########################## STAGE TWO ###########################
@@ -42,4 +41,8 @@ python run_stage_two.py -task newsgroups \
 
 python run_stage_two.py -task race \
 	-editor_path results/race/editors/${STAGE1EXP}/checkpoints/ \
+	-stage2_exp ${STAGE2EXP} 
+
+python run_stage_two.py -task snli \
+	-editor_path results/snli/editors/${STAGE1EXP}/checkpoints/ \
 	-stage2_exp ${STAGE2EXP} 
