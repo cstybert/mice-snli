@@ -70,8 +70,8 @@ def get_stage_one_parsers():
     """ Helper function to get parsers for Stage 1. """
 
     train_parser = argparse.ArgumentParser()
-    train_parser.add_argument("-train_batch_size", default=4, type=int)
-    train_parser.add_argument("-val_batch_size", default=4, type=int)
+    train_parser.add_argument("-train_batch_size", default=32, type=int)
+    train_parser.add_argument("-val_batch_size", default=32, type=int)
     train_parser.add_argument("-num_epochs", default=3, type=int)
     train_parser.add_argument("-lr", default=5e-5, type=float)
     train_parser.add_argument("-seed", default=42, type=int)
