@@ -1,7 +1,7 @@
 import logging
 
 from allennlp.data import DatasetReader
-from typing import List, Optional, Dict
+from typing import Optional, Dict
 from allennlp.data import DatasetReader, Instance
 
 from overrides import overrides
@@ -9,7 +9,7 @@ from overrides import overrides
 from allennlp.data import Tokenizer
 from allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
 from allennlp.data.tokenizers.spacy_tokenizer import SpacyTokenizer
-from allennlp.data.fields import TextField, MetadataField, LabelField
+from allennlp.data.fields import TextField, LabelField
 
 from pathlib import Path
 from itertools import chain
@@ -62,8 +62,6 @@ class SnliDatasetReader(DatasetReader):
             premise = data['sentence1']
             hypothesis = data['sentence2']
             if label == '-':
-                # These were cases where the annotators disagreed; we'll just
-                # skip them. It's like 800 / 500k examples in the train data
                 continue
             tokens = premise + ' [SEP] ' + hypothesis
             yield self.text_to_instance(tokens, label)
@@ -78,8 +76,6 @@ class SnliDatasetReader(DatasetReader):
             premise = data['sentence1']
             hypothesis = data['sentence2']
             if label == '-':
-                # These were cases where the annotators disagreed; we'll just
-                # skip them. It's like 800 / 500k examples in the train data
                 continue
             inputs.append(premise + ' [SEP] ' + hypothesis)
             labels.append(label)
